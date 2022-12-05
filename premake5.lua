@@ -7,13 +7,12 @@ project "Crayon"
 
 	files {
 		
+		"include/**.h",
 		"src/**.h",
-		"src/**¨.cpp",
-
-		"include/**.h"
+		"src/**.cpp"
 	}
 
-	includeDirs {
+	includedirs {
 
 		"include"
 	}
