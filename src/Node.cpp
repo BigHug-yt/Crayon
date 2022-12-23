@@ -32,6 +32,7 @@ namespace Crayon {
 			IdentifyKeys();
 		if (m_Type == NodeType::List) {
 			// TODO: Split a list up into its items (store them as Nodes in m_Keys)
+			IdentifyItems();
 		}
 	}
 
@@ -193,6 +194,33 @@ namespace Crayon {
 			m_Keys.push_back(Node(value));
 			rawStart = endPos;
 		}
+	}
+
+	void Node::IdentifyItems() {
+
+		uint32_t pointer = 0;
+		uint32_t itemStart = 0;
+		uint32_t itemEnd = 0;
+		bool hasStarted = false;
+		char currentChar = m_Raw[pointer];
+		while (currentChar != ']') {
+			if (currentChar != ' ' && currentChar != '[') {
+
+				if (!hasStarted)
+					itemStart = pointer;
+				hasStarted = true;
+			}
+			if (currentChar == ',') {
+				hasStarted = false;
+				itemEnd = pointer - 1;
+				m_Keys.push_back(Node(m_Raw.substr(itemStart, itemEnd - itemStart)));
+			}
+
+			pointer++;
+			currentChar = m_Raw[pointer];
+		}
+		itemEnd = pointer - 1;
+		m_Keys.push_back(Node(m_Raw.substr(itemStart, itemEnd - itemStart)));
 	}
 
 	template <>

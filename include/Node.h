@@ -39,6 +39,7 @@ namespace Crayon {
 		uint32_t FindEndOfValue(uint32_t start);
 		std::string StripAndClip(uint32_t start, uint32_t end);	// returns polished substring of m_Raw to create a new Node
 		void IdentifyKeys();
+		void IdentifyItems();
 	private:
 		NodeType m_Type;
 		bool m_IsReal = false;
