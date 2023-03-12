@@ -34,7 +34,12 @@ namespace Crayon {
 	inline Room& operator<< (Room& room, const char* v) { return room.Write(std::string(v)); }
 	inline Room& operator<< (Room& room, bool v) { return room.Write((v) ? "true" : "false"); }
 	inline Room& operator<< (Room& room, int v) { return room.Write(std::to_string(v)); }
+	inline Room& operator<< (Room& room, uint16_t v) { return room.Write(std::to_string(v)); }
+	inline Room& operator<< (Room& room, uint32_t v) { return room.Write(std::to_string(v)); }
+	inline Room& operator<< (Room& room, uint64_t v) { return room.Write(std::to_string(v)); }
 	inline Room& operator<< (Room& room, float v) { return room.Write(std::to_string(v)); }
+	inline Room& operator<< (Room& room, double v) { return room.Write(std::to_string(v)); }
+	inline Room& operator<< (Room& room, long double v) { return room.Write(std::to_string(v)); }
 
 	inline Room& operator<< (Room& room, const DesignType d) { return room.Design(d); }
 }
